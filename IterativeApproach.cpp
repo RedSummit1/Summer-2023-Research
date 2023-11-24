@@ -64,7 +64,7 @@ int main() {
     //{adj1, adj2, adj3, adj4, adj5};
 
          
-    int V = 100; 
+    int V = 10; 
     vector<int> adj1[V];
 
     for(int i = 1; i < V; i++){

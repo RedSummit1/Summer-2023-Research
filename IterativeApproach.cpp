@@ -49,14 +49,25 @@ int calculatePathSum(vector<int> adj[], int V) {
     return totalSum;
 }
 
-/* void test(int num_nodes, vector<int>& adj){ */
-/*     for(int i = 1; i < num_nodes; i++){ */
-/*         addEdge(*adj,(i-1)/2, i);         */
-/*     }                                       */ 
-/* } */
+void test(int num_nodes, vector<int> &adj){
+    for(int i = 1; i < num_nodes; i++){
+        addEdge(&adj,(i-1)/2, i);        
+    }                                       
+
+    int pathSum{0};
+    auto startTime = std::chrono::high_resolution_clock::now();
+    pathSum += calculatePathSum(&adj, num_nodes);
+    pathSum += calculatePathSum(&adj, num_nodes);
+    pathSum += calculatePathSum(&adj, num_nodes);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    cout << "Total path sum in the graph: " << (pathSum/3) << endl;
+    std::cout << "Exection time: " << duration.count() << " microseconds\n";
+
+    
+}
 /*  */
 int main() {
-    //Going to creat
     /*  vector<int> adj2[V * 10];  */ //Adjacency list representation of the graph
     /*  vector<int> adj3[V * 100]; / */ //Adjacency list representation of the graph
     /*  vector<int> adj4[V * 1000];  */// Adjacency list representation of the graph
@@ -85,9 +96,8 @@ int main() {
 /*     addedge(adj1, 3, 7); */
 /*     addedge(adj1, 3, 8); */
 
-    int pathSum = calculatePathSum(adj1, V);
+    //int pathSum = calculatePathSum(adj1, V);
     //Display the calculated path sum
-    cout << "Total path sum in the graph: " << pathSum << endl;
-
+    test(10,*adj1);
     return 0;
 }

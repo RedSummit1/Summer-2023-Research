@@ -1,7 +1,8 @@
 #include <iostream>
-#include <chrono>
 #include <vector>
 #include <stack>
+#include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -49,24 +50,55 @@ int calculatePathSum(vector<int> adj[], int V) {
     return totalSum;
 }
 
-void test(int num_nodes, vector<int> &adj){
+void test(int num_nodes, vector<int> &adj, ofstream& csvFile){
+    //int pathsum = 0;
     for(int i = 1; i < num_nodes; i++){
         addEdge(&adj,(i-1)/2, i);        
     }                                       
-
-    int pathSum{0};
+    
     auto startTime = std::chrono::high_resolution_clock::now();
-    pathSum += calculatePathSum(&adj, num_nodes);
-    pathSum += calculatePathSum(&adj, num_nodes);
-    pathSum += calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&adj, num_nodes);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    csvFile << duration.count() << ',';
+
+    for(int i = 0; i < 8; ++i){
+        startTime = std::chrono::high_resolution_clock::now();
+        calculatePathSum(&adj, num_nodes);
+        endTime = std::chrono::high_resolution_clock::now();
+        duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+        csvFile << duration.count() << ',';
+        
+    }
+
+    startTime = std::chrono::high_resolution_clock::now();
+    calculatePathSum(&adj, num_nodes);
+    endTime = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    csvFile << duration.count() << '\n';
+
+
+
+
+
+
+    /* auto startTime = std::chrono::high_resolution_clock::now();
+    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&adj, num_nodes);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    auto startTime = std::chrono::high_resolution_clock::now();
+    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&adj, num_nodes);
     auto endTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     cout << "Total path sum in the graph: " << (pathSum/3) << endl;
     std::cout << "Exection time: " << duration.count() << " microseconds\n";
-
+    */
     
 }
-/*  */
 int main() {
     /*  vector<int> adj2[V * 10];  */ //Adjacency list representation of the graph
     /*  vector<int> adj3[V * 100]; / */ //Adjacency list representation of the graph
@@ -75,12 +107,16 @@ int main() {
     //{adj1, adj2, adj3, adj4, adj5};
 
          
-    int V = 10; 
-    vector<int> adj1[V];
+    //int node_sizes[] {10,100,1000,10000}; 
+    vector<int> adj1[10];
+    vector<int> adj2[100];
+    vector<int> adj3[1000];
+    vector<int> adj4[10000];
+    vector<int> adj5[100000];
 
-    for(int i = 1; i < V; i++){
-        addEdge(adj1,(i-1)/2, i);        
-    }                                       
+/*     for(int i = 1; i < V; i++){ */
+/*         addEdge(adj1,(i-1)/2, i);         */
+/*     }                                        */
 
 
 
@@ -98,6 +134,13 @@ int main() {
 
     //int pathSum = calculatePathSum(adj1, V);
     //Display the calculated path sum
-    test(10,*adj1);
+    ofstream csvFile;
+    csvFile.open("../Iterative_data.csv");
+    test(10,*adj1,csvFile);
+    test(100,*adj2,csvFile);
+    test(1000,*adj3,csvFile);
+    test(10000,*adj4,csvFile);
+    test(100000,*adj5,csvFile);
+    csvFile.close();
     return 0;
 }

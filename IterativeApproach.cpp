@@ -7,12 +7,12 @@
 using namespace std;
 
 // Function to add an edge to the graph
-void addEdge(vector<int> adj[], int u, int v) {
-    adj[u].push_back(v);
+void addEdge(vector<int> graph[], int u, int v) {
+    graph[u].push_back(v);
 }
 
 // Function to calculate path sum in the graph using Iterative DFS
-int calculatePathSum(vector<int> adj[], int V) {
+int calculatePathSum(vector<int> graph[], int V) {
     int totalSum = 0;
 
     // Stack to perform iterative DFS
@@ -34,11 +34,11 @@ int calculatePathSum(vector<int> adj[], int V) {
                 visited[u] = true;
 
                 // If the current vertex is a leaf node, add its path sum to the totalSum
-                if (adj[u].empty()) {
+                if (graph[u].empty()) {
                     totalSum += sumSoFar;
                 } else {
-                    for (int v : adj[u]) {
-                        stk.push({v, sumSoFar}); // Push adj1acent nodes to the stack with updated path sum
+                    for (int v : graph[u]) {
+                        stk.push({v, sumSoFar}); // Push graph1acent nodes to the stack with updated path sum
                     }
                 }
             }
@@ -50,21 +50,21 @@ int calculatePathSum(vector<int> adj[], int V) {
     return totalSum;
 }
 
-void test(int num_nodes, vector<int> &adj, ofstream& csvFile){
+void test(int num_nodes, vector<int> &graph, ofstream& csvFile){
     //int pathsum = 0;
     for(int i = 1; i < num_nodes; i++){
-        addEdge(&adj,(i-1)/2, i);        
+        addEdge(&graph,(i-1)/2, i);        
     }                                       
     
     auto startTime = std::chrono::high_resolution_clock::now();
-    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&graph, num_nodes);
     auto endTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     csvFile << duration.count() << ',';
 
     for(int i = 0; i < 8; ++i){
         startTime = std::chrono::high_resolution_clock::now();
-        calculatePathSum(&adj, num_nodes);
+        calculatePathSum(&graph, num_nodes);
         endTime = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
         csvFile << duration.count() << ',';
@@ -72,7 +72,7 @@ void test(int num_nodes, vector<int> &adj, ofstream& csvFile){
     }
 
     startTime = std::chrono::high_resolution_clock::now();
-    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&graph, num_nodes);
     endTime = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     csvFile << duration.count() << '\n';
@@ -83,15 +83,15 @@ void test(int num_nodes, vector<int> &adj, ofstream& csvFile){
 
 
     /* auto startTime = std::chrono::high_resolution_clock::now();
-    calculatePathSum(&adj, num_nodes);
-    calculatePathSum(&adj, num_nodes);
-    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
     auto endTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     auto startTime = std::chrono::high_resolution_clock::now();
-    calculatePathSum(&adj, num_nodes);
-    calculatePathSum(&adj, num_nodes);
-    calculatePathSum(&adj, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
     auto endTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     cout << "Total path sum in the graph: " << (pathSum/3) << endl;
@@ -100,22 +100,22 @@ void test(int num_nodes, vector<int> &adj, ofstream& csvFile){
     
 }
 int main() {
-    /*  vector<int> adj2[V * 10];  */ //Adjacency list representation of the graph
-    /*  vector<int> adj3[V * 100]; / */ //Adjacency list representation of the graph
-    /*  vector<int> adj4[V * 1000];  */// Adjacency list representation of the graph
-    /*  vector<int> adj5[V * 10000]; */ // Adjacency list representation of the graph
-    //{adj1, adj2, adj3, adj4, adj5};
+    /*  vector<int> graph2[V * 10];  */ //Adjacency list representation of the graph
+    /*  vector<int> graph3[V * 100]; / */ //Adjacency list representation of the graph
+    /*  vector<int> graph4[V * 1000];  */// Adjacency list representation of the graph
+    /*  vector<int> graph5[V * 10000]; */ // Adjacency list representation of the graph
+    //{graph1, graph2, graph3, graph4, graph5};
 
          
     //int node_sizes[] {10,100,1000,10000}; 
-    vector<int> adj1[10];
-    vector<int> adj2[100];
-    vector<int> adj3[1000];
-    vector<int> adj4[10000];
-    vector<int> adj5[100000];
+    vector<int> graph1[10];
+    vector<int> graph2[100];
+    vector<int> graph3[1000];
+    vector<int> graph4[10000];
+    vector<int> graph5[100000];
 
 /*     for(int i = 1; i < V; i++){ */
-/*         addEdge(adj1,(i-1)/2, i);         */
+/*         addEdge(graph1,(i-1)/2, i);         */
 /*     }                                        */
 
 
@@ -123,24 +123,25 @@ int main() {
 
 
     // Adding edges to the graph (example edges)
-/*     addedge(adj1, 0, 1); */
-/*     addedge(adj1, 0, 2); */
-/*     addedge(adj1, 1, 3); */
-/*     addedge(adj1, 1, 4); */
-/*     addedge(adj1, 2, 5); */
-/*     addedge(adj1, 2, 6); */
-/*     addedge(adj1, 3, 7); */
-/*     addedge(adj1, 3, 8); */
+/*     addedge(graph1, 0, 1); */
+/*     addedge(graph1, 0, 2); */
+/*     addedge(graph1, 1, 3); */
+/*     addedge(graph1, 1, 4); */
+/*     addedge(graph1, 2, 5); */
+/*     addedge(graph1, 2, 6); */
+/*     addedge(graph1, 3, 7); */
+/*     addedge(graph1, 3, 8); */
 
-    //int pathSum = calculatePathSum(adj1, V);
+    //int pathSum = calculatePathSum(graph1, V);
     //Display the calculated path sum
     ofstream csvFile;
     csvFile.open("../Iterative_data.csv");
-    test(10,*adj1,csvFile);
-    test(100,*adj2,csvFile);
-    test(1000,*adj3,csvFile);
-    test(10000,*adj4,csvFile);
-    test(100000,*adj5,csvFile);
+    test(10,*graph1,csvFile);
+    test(100,*graph2,csvFile);
+    test(1000,*graph3,csvFile);
+    test(10000,*graph4,csvFile);
+    test(100000,*graph5,csvFile);
     csvFile.close();
+    cout << "Done" << endl;
     return 0;
 }

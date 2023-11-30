@@ -1,4 +1,5 @@
 output/
 *.csv
 Iterative_data.csv
-Size_100000.png Size_10000.png Size_1000.png Size_100.png Size_10.png
+*.png
+.ipynb_checkpoints/

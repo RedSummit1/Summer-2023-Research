@@ -77,8 +77,35 @@ void test(int num_nodes, vector<int> &graph, ofstream& csvFile){
     duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
     csvFile << duration.count() << '\n';
 
+
+
+
+
+
+    /* auto startTime = std::chrono::high_resolution_clock::now();
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    auto startTime = std::chrono::high_resolution_clock::now();
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    calculatePathSum(&graph, num_nodes);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    cout << "Total path sum in the graph: " << (pathSum/3) << endl;
+    std::cout << "Exection time: " << duration.count() << " microseconds\n";
+    */
+    
 }
 int main() {
+    /*  vector<int> graph2[V * 10];  */ //Adjacency list representation of the graph
+    /*  vector<int> graph3[V * 100]; / */ //Adjacency list representation of the graph
+    /*  vector<int> graph4[V * 1000];  */// Adjacency list representation of the graph
+    /*  vector<int> graph5[V * 10000]; */ // Adjacency list representation of the graph
+    //{graph1, graph2, graph3, graph4, graph5};
+
          
     //int node_sizes[] {10,100,1000,10000}; 
     vector<int> graph1[10];
@@ -87,6 +114,25 @@ int main() {
     vector<int> graph4[10000];
     vector<int> graph5[100000];
 
+/*     for(int i = 1; i < V; i++){ */
+/*         addEdge(graph1,(i-1)/2, i);         */
+/*     }                                        */
+
+
+
+
+
+    // Adding edges to the graph (example edges)
+/*     addedge(graph1, 0, 1); */
+/*     addedge(graph1, 0, 2); */
+/*     addedge(graph1, 1, 3); */
+/*     addedge(graph1, 1, 4); */
+/*     addedge(graph1, 2, 5); */
+/*     addedge(graph1, 2, 6); */
+/*     addedge(graph1, 3, 7); */
+/*     addedge(graph1, 3, 8); */
+
+    //int pathSum = calculatePathSum(graph1, V);
     //Display the calculated path sum
     ofstream csvFile;
     csvFile.open("../Iterative_data.csv");

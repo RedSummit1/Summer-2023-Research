@@ -57,7 +57,7 @@ void test(int num_nodes, vector<int> &graph, ofstream& csvFile){
     auto startTime = std::chrono::high_resolution_clock::now();
     calculatePathSum(&graph, num_nodes);
     auto endTime = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0);
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>((endTime - startTime)/3.0); // Why did you divide by three?
     csvFile << duration.count() << ',';
 
     for(int i = 0; i < 8; ++i){

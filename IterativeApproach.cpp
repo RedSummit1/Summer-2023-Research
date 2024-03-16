@@ -46,7 +46,7 @@ int calculatePathSum(vector<int> graph[], int V) {
         // Clear visited array for the next DFS traversal
         fill(visited.begin(), visited.end(), false);
     }
-
+	cout << totalSum << endl;	
     return totalSum;
 }
 
@@ -143,5 +143,6 @@ int main() {
     test(100000,*graph5,csvFile);
     csvFile.close();
     cout << "Done" << endl;
+	
     return 0;
 }
